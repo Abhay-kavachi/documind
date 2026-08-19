@@ -42,8 +42,10 @@ export class DemoLLMProvider implements LLMProvider {
         : `Content from page ${p.page_number}`,
     }));
 
+    const pageCitations = pageNumbers.map(p => `[Page ${p}]`).join(', ');
+
     return {
-      answer: `Based on the analysis of "${documentTitle}", the retrieved evidence from pages ${pageNumbers.join(', ')} provides relevant information about your question. ` +
+      answer: `Based on the analysis of "${documentTitle}", the retrieved evidence from ${pageCitations} provides relevant information about your question. ` +
         `This is a demo response — for production-quality grounded answers with real multimodal analysis, ` +
         `configure a Gemini API key (LLM_PROVIDER=gemini).`,
       citations,
